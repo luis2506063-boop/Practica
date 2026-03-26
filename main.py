@@ -1,0 +1,38 @@
+class Producto:
+    def __init__(self, id: int,nombre: str, cantidad: float, stock: int  ) -> None:
+        self.id = id
+        self.nombre = nombre
+        #los siguientes atributos estarán privados con _ bajo
+        self._cantidad = cantidad
+        self._stock = stock
+
+    #Encapsulamos ---
+    @property
+    def precio(self):
+        return self.precio
+
+    @property
+    def stock(self):
+        return self._stock
+
+    #Vamos a protegernos para evitar errores de asignación mal de precios
+
+    @precio.setter
+
+    def precio(self, nuevo_precio):
+        if nuevo_precio < 0:
+            raise ValueError("Precio debe ser mayor que 0")
+        self._precio = nuevo_precio
+
+    #Métodos de negocio
+    def vender(self, cantidad: int) -> None:
+        """No vender mas de lo que hay"""
+        if cantidad > self._stock:
+            raise ValueError("stock insuficiente para {self.nombre}. Disponible {self._stock}")
+        self._stock -= cantidad
+
+    def __str__(self):
+        return f"{self.id} {self.nombre} - {self._precio} {self._stock}"
+
+
+

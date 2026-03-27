@@ -26,10 +26,14 @@ class Producto:
 
     #Métodos de negocio
     def vender(self, cantidad: int) -> None:
-        """No vender mas de lo que hay"""
+        #Evitamos solicitud negativa o solicitud de cero
+        if cantidad <= 0:
+            raise ValueError("Precio debe ser mayor que 0")
+
+        #No vender más de lo que hay
         if cantidad > self._stock:
-            raise ValueError(f"stock insuficiente para {self.nombre}. Disponible {self._stock}")
+            raise ValueError(f"Stock insuficiente para {self.nombre}. Disponible {self._stock}")
         self._stock -= cantidad
 
     def __str__(self):
-        return f"{self.id} {self.nombre} - {self._precio} {self._stock}"
+        return f"{self.id}-{self.nombre} - $Precio:{self._precio}|Stock: {self._stock}"

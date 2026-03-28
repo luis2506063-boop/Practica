@@ -21,5 +21,7 @@ class ClienteBlack(Cliente):
         #Eñ cliente Black ahorra un 30%
         return total * 0.3
 
+def __str__(self):
+    return f"{self.nombre} {self.apellido}"
 
 

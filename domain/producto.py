@@ -24,6 +24,13 @@ class Producto:
             raise ValueError("Precio debe ser mayor que 0")
         self._precio = nuevo_precio
 
+    @stock.setter
+    def stock(self, nuevo_stock: float) -> None:
+        if nuevo_stock < 0:
+            raise ValueError("Stock debe ser mayor que 0")
+        self._stock = nuevo_stock
+
+
     #Métodos de negocio
     def vender(self, cantidad: int) -> None:
         #Evitamos solicitud negativa o solicitud de cero

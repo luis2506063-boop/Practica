@@ -1,4 +1,4 @@
-class cliente:
+class Cliente:
     def __init__(self, nombre:str, apellido:str):
         self.nombre = nombre
         self.apellido = apellido
@@ -7,7 +7,7 @@ class cliente:
         return 0.0 #El cliente normal no ahorra nada
 
 
-class ClienteVip(cliente):
+class ClienteVIP(Cliente):
     def __init__(self, nombre:str, apellido:str):
         super().__init__(nombre, apellido)
 
@@ -17,7 +17,7 @@ class ClienteVip(cliente):
         return descuento
 
 
-class ClienteBlack(cliente):
+class ClienteBlack(Cliente):
     def __init__(self, nombre:str, apellido:str):
         super().__init__(nombre, apellido)
 

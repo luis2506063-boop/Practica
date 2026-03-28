@@ -28,7 +28,7 @@ class Producto:
     def vender(self, cantidad: int) -> None:
         #Evitamos solicitud negativa o solicitud de cero
         if cantidad <= 0:
-            raise ValueError("Precio debe ser mayor que 0")
+            raise ValueError("La cantidad a vender debe ser mayor a 0")
 
         #No vender más de lo que hay
         if cantidad > self._stock:

@@ -43,4 +43,4 @@ class Producto:
         self._stock -= cantidad
 
     def __str__(self):
-        return f"{self.id}-{self.nombre} - $Precio:{self._precio}|Stock: {self._stock}"
+        return f"{self.id}-{self.nombre} - $Precio:{self.precio}|Stock: {self._stock}"

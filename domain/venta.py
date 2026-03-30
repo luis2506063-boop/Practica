@@ -4,12 +4,13 @@ from datetime import datetime
 # Importamos las clases
 from cliente import Cliente
 from producto import Producto
+from detalle_venta import DetalleVenta  # 🔥 nueva importación
 
 
 class Venta:
     def __init__(self, cliente: Cliente) -> None:
         self.cliente = cliente
-        self._productos = []  # Encapsulamos la lista
+        self._productos = []  # lista de objetos DetalleVenta
         self.fecha = datetime.now()
 
     def agregar_producto(self, producto: Producto, cantidad: int) -> None:
@@ -17,18 +18,15 @@ class Venta:
         if cantidad <= 0:
             raise ValueError("La cantidad debe ser mayor a 0")
 
-        # Lógica de negocio (delegamos al producto)
+        # Delegamos la lógica al producto (POO correcto)
         producto.vender(cantidad)
 
-        # Creamos el detalle (composición)
-        detalle = {
-            'producto': producto,
-            'cantidad': cantidad,
-        }
+        # 🔥 Creamos un objeto DetalleVenta en lugar de diccionario
+        detalle = DetalleVenta(producto, cantidad)
 
         self._productos.append(detalle)
 
-    # Getter para no exponer directamente la lista interna
+    # Getter para proteger la lista
     @property
     def productos(self):
         return self._productos
@@ -40,21 +38,16 @@ class Venta:
     def calcular_subtotal(self) -> float:
         subtotal = 0
 
+        # 🔥 Ahora cada objeto sabe calcularse
         for detalle in self._productos:
-            producto = detalle['producto']
-            cantidad = detalle['cantidad']
-
-            # 🔴 CORRECCIÓN IMPORTANTE:
-            # usamos el getter, NO el atributo protegido
-            subtotal += producto.precio * cantidad
+            subtotal += detalle.calcular_subtotal()
 
         return subtotal
 
     def calcular_descuento(self) -> float:
         subtotal = self.calcular_subtotal()
 
-        # 🔥 AQUÍ USAMOS POLIMORFISMO
-        # No importa si es Cliente, VIP o Black
+        # 🔥 Polimorfismo (Cliente, VIP, Black)
         return self.cliente.obtener_descuento(subtotal)
 
     def calcular_total(self) -> float:
@@ -73,10 +66,9 @@ class Venta:
         lineas.append(f"Fecha: {self.fecha.strftime('%Y-%m-%d %H:%M:%S')}")
         lineas.append("Productos:")
 
+        # 🔥 cada detalle se imprime solo
         for detalle in self._productos:
-            producto = detalle['producto']
-            cantidad = detalle['cantidad']
-            lineas.append(f"- {producto.nombre} x{cantidad} = ${producto.precio * cantidad}")
+            lineas.append(f"- {detalle}")
 
         subtotal = self.calcular_subtotal()
         descuento = self.calcular_descuento()

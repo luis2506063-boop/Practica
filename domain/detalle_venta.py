@@ -1,4 +1,4 @@
-from producto import Producto
+from domain.producto import Producto
 
 
 class DetalleVenta:

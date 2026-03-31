@@ -2,9 +2,9 @@
 from datetime import datetime
 
 # Importamos las clases
-from cliente import Cliente
-from producto import Producto
-from detalle_venta import DetalleVenta  # 🔥 nueva importación
+from domain.cliente import Cliente
+from domain.producto import Producto
+from domain.detalle_venta import DetalleVenta  # 🔥 nueva importación
 
 
 class Venta:

@@ -6,6 +6,9 @@ class Cliente:
     def obtener_descuento(self, total:float) -> float:
         return 0.0 #El cliente normal no ahorra nada
 
+    def __str__(self):
+        return f"Cliente:{self.nombre} {self.apellido}"
+
 
 class ClienteVIP(Cliente):
 
@@ -21,7 +24,8 @@ class ClienteBlack(Cliente):
         #Eñ cliente Black ahorra un 30%
         return total * 0.3
 
-def __str__(self):
-    return f"{self.nombre} {self.apellido}"
+
+
+
 
 

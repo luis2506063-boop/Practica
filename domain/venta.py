@@ -62,7 +62,7 @@ class Venta:
 
     def __str__(self) -> str:
         lineas = []
-        lineas.append(f"Cliente: {self.cliente}")
+        lineas.append(f"{self.cliente}")
         lineas.append(f"Fecha: {self.fecha.strftime('%Y-%m-%d %H:%M:%S')}")
         lineas.append("Productos:")
 

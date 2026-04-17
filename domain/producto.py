@@ -20,7 +20,7 @@ class Producto:
     @precio.setter
 
     def precio(self, nuevo_precio: float) -> None:
-        if nuevo_precio < 0:
+        if nuevo_precio <= 0:
             raise ValueError("Precio debe ser mayor que 0")
         self._precio = nuevo_precio
 

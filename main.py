@@ -11,11 +11,15 @@ clientes = []
 clientes.append(Cliente("Luis","Marin"))
 clientes.append(Cliente("Carlos","Hernández"))
 
-venta = Venta(clientes[0])  # 👈 AQUÍ defines el cliente
+venta = Venta(clientes[0])  # 👈 PRIMERO CREAR
 
-venta.agregar_producto(productos[0], 1)
+# 🔥 Caso error controlado
+try:
+    venta.agregar_producto(productos[0], 1000)
+except ValueError as e:
+    print(e)
+
+# ✔ Caso correcto
 venta.agregar_producto(productos[1], 2)
 
 print(venta)
-
-

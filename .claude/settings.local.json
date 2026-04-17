@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls C:/Users/aseso/OneDrive/Desktop/Venta_prueba/*.py)"
+      "Bash(ls C:/Users/aseso/OneDrive/Desktop/Venta_prueba/*.py)",
+      "Bash(find:*)"
     ]
   }
 }
